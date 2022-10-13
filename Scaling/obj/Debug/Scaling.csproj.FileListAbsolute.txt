@@ -1,0 +1,10 @@
+D:\Visual studio\Scaling\Scaling\bin\Debug\Scaling.exe.config
+D:\Visual studio\Scaling\Scaling\bin\Debug\Scaling.exe
+D:\Visual studio\Scaling\Scaling\bin\Debug\Scaling.pdb
+D:\Visual studio\Scaling\Scaling\obj\Debug\Scaling.csproj.AssemblyReference.cache
+D:\Visual studio\Scaling\Scaling\obj\Debug\Scaling.Form1.resources
+D:\Visual studio\Scaling\Scaling\obj\Debug\Scaling.Properties.Resources.resources
+D:\Visual studio\Scaling\Scaling\obj\Debug\Scaling.csproj.GenerateResource.cache
+D:\Visual studio\Scaling\Scaling\obj\Debug\Scaling.csproj.CoreCompileInputs.cache
+D:\Visual studio\Scaling\Scaling\obj\Debug\Scaling.exe
+D:\Visual studio\Scaling\Scaling\obj\Debug\Scaling.pdb
