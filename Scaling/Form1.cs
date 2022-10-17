@@ -111,5 +111,32 @@ namespace Scaling
                 pictureBox1.Image = image.image;            
             }
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (image != null && TryValidateMask(out Mask mask))
+            {
+                image.Filter(mask);
+                pictureBox1.Image = image.image;
+            }
+        }
+        private bool TryValidateMask(out Mask mask)
+        {
+            if (int.TryParse(textCell1.Text, out int cell1) && int.TryParse(textCell2.Text, out int cell2) && int.TryParse(textCell3.Text, out int cell3) &&
+                int.TryParse(textCell4.Text, out int cell4) && int.TryParse(textCell5.Text, out int cell5) && int.TryParse(textCell6.Text, out int cell6) &&
+                int.TryParse(textCell7.Text, out int cell7) && int.TryParse(textCell8.Text, out int cell8) && int.TryParse(textCell9.Text, out int cell9) &&
+                int.TryParse(textK.Text, out int K))
+            {
+                int[][] mas = new int[3][];
+                for (int i = 0; i < mas.Length; i++) mas[i] = new int[3];
+                mas[0][0] = cell1; mas[0][1] = cell2; mas[0][2] = cell3;
+                mas[1][0] = cell4; mas[1][1] = cell5; mas[1][2] = cell6;
+                mas[2][0] = cell7; mas[2][1] = cell8; mas[2][2] = cell9;
+                mask = new Mask(K, mas);
+                return true;
+            }
+            mask = null;
+            return false;
+        }
     }
 }

@@ -66,5 +66,11 @@ namespace Scaling
             rotate.rotate();
             image = rotate.image;
         }
+        public void Filter(Mask mask)
+        {
+            Filter filter = new Filter(image, mask);
+            filter.filter();
+            image = filter.image;
+        }
     }
 }
