@@ -20,6 +20,7 @@ namespace Scaling
         {
             open_dialog = new OpenFileDialog();
             open_dialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG|All files (*.*)|*.*";
+            radioButton1.Checked = true;
         }
 
         private void but_load_Click(object sender, EventArgs e)
@@ -107,17 +108,28 @@ namespace Scaling
         {
             if (image != null&& int.TryParse(enterCorner.Text, out int num))
             {
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
                 image.Rotate(num);
-                pictureBox1.Image = image.image;            
+                pictureBox1.Image = image.image;
+                stopwatch.Stop();
+                labelTime.Text = stopwatch.ElapsedMilliseconds + " милисек.";
+                Update();
             }
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if (image != null && TryValidateMask(out Mask mask))
+            if (image != null && (TryValidateMask(out Mask mask)|| textK.ReadOnly))
             {
-                image.Filter(mask);
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+                if (textK.ReadOnly) image.medianFilter();else
+                    image.Filter(mask);
                 pictureBox1.Image = image.image;
+                stopwatch.Stop();
+                labelTime.Text = stopwatch.ElapsedMilliseconds + " милисек.";
+                Update();
             }
         }
         private bool TryValidateMask(out Mask mask)
@@ -137,6 +149,45 @@ namespace Scaling
             }
             mask = null;
             return false;
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                textCell1.Text = "1"; textCell2.Text = "1"; textCell3.Text = "1";
+                textCell4.Text = "1"; textCell5.Text = "2"; textCell6.Text = "1";
+                textCell7.Text = "1"; textCell8.Text = "1"; textCell9.Text = "1";
+                textK.Text = "10";
+            }
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton2.Checked)
+            {
+                textCell1.Text = "-1"; textCell2.Text = "-1"; textCell3.Text = "-1";
+                textCell4.Text = "-1"; textCell5.Text = "9"; textCell6.Text = "-1";
+                textCell7.Text = "-1"; textCell8.Text = "-1"; textCell9.Text = "-1";
+                textK.Text = "1";
+            }
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            bool flag = false;
+            if (radioButton3.Checked)
+            {
+                textCell1.Text = ""; textCell2.Text = ""; textCell3.Text = "";
+                textCell4.Text = ""; textCell5.Text = ""; textCell6.Text = "";
+                textCell7.Text = ""; textCell8.Text = ""; textCell9.Text = "";
+                textK.Text = "";
+                flag = true;
+            }
+            textCell1.ReadOnly = flag; textCell2.ReadOnly = flag; textCell3.ReadOnly = flag;
+            textCell4.ReadOnly = flag; textCell5.ReadOnly = flag; textCell6.ReadOnly = flag;
+            textCell7.ReadOnly = flag; textCell8.ReadOnly = flag; textCell9.ReadOnly = flag;
+            textK.ReadOnly = flag;
         }
     }
 }

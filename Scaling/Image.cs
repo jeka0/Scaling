@@ -72,5 +72,11 @@ namespace Scaling
             filter.filter();
             image = filter.image;
         }
+        public void medianFilter()
+        {
+            Filter filter = new Filter(image, null);
+            filter.medianFilter();
+            image = filter.image;
+        }
     }
 }
